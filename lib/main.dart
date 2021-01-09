@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:routelines/place_list.dart';
 import 'package:routelines/secrets.dart';// Stores the Google Maps API Key
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geocoding/geocoding.dart';
@@ -328,6 +329,16 @@ class _MapViewState extends State<MapView> {
       height: height,
       width: width,
       child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(icon: Icon(Icons.list), onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PlaceList()),
+              );
+            }),
+          ],
+        ),
         key: _scaffoldKey,
         body: Stack(
           children: <Widget>[
@@ -427,7 +438,7 @@ class _MapViewState extends State<MapView> {
                                 onPressed: () {
                                   startAddressController.text = _currentAddress;
                                   _startAddress = _currentAddress;
-                                  print(_startAddress + " " + _currentAddress + " startAdresssssssssssssssss");
+                                  print(_startAddress + " startAdresssssssssssssssss");
                                 },
                               ),
                               controller: startAddressController,
